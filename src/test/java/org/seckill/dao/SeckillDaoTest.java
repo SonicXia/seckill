@@ -8,6 +8,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.Date;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -33,12 +36,19 @@ public class SeckillDaoTest {
 
     @Test
     public void testQueryAll() throws Exception {
-
+        // java没有保存形参的记录：queryAll(int offset, int limit) -> queryAll(arg0, arg1)
+        //
+        List<Seckill> seckills = seckillDao.queryAll(0, 100);
+        for (Seckill seckill : seckills) {
+            System.out.println(seckill);
+        }
     }
 
     @Test
     public void testReduceNumber() throws Exception {
-
+        Date killTime = new Date();
+        int updateCnt = seckillDao.reduceNumber(1000L, killTime);
+        System.out.println("updateCnt = " + updateCnt);
     }
 
 
