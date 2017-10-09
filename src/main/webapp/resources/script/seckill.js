@@ -73,11 +73,11 @@ var seckill ={
         var seckillBox = $('#seckill-box');
         // 时间判断
         if (nowTime > endTime) {
-            console.log('秒杀结束');//todo
+            //console.log('秒杀结束');//todo
             // 秒杀结束
             seckillBox.html('秒杀结束！');
         } else if (nowTime < startTime) {
-            console.log('秒杀未开始');//todo
+            //console.log('秒杀未开始');//todo
             // 秒杀未开始，计时事件绑定
             var killTime = new Date(startTime + 1000);  // 加1秒，防止用户端计时偏移
             seckillBox.countdown(killTime, function (event) {   // 以killTime作为基准时间
@@ -90,7 +90,7 @@ var seckill ={
                 seckill.handleSeckillkill(seckillId, seckillBox);
             });
         } else {
-            console.log('秒杀开始');//todo
+            //console.log('秒杀开始');//todo
             // 秒杀开始
             seckill.handleSeckillkill(seckillId, seckillBox);
         }
