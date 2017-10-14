@@ -16,5 +16,16 @@ CREATE PROCEDURE `seckill`.`execute_seckill`
     IF (insert_count < 0) THEN
       ROLLBACK;
       SET r_result = -1;
-
+    ELSEIF (insert_count < 0) THEN
+      ROLLBACK;
+      SET r_result = -2;
+    ELSE
+      UPDATE seckill
+      SET number = number - 1
+      WHERE seckill_id = v_seckill_id
+        AND end_time > v_kill_time
+        AND start_time < v_kill_time
+        AND number > 0;
+      SELECT ROW_COUNT() INTO insert_count;
+    END IF;
 
