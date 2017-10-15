@@ -114,7 +114,7 @@ public class SeckillServiceImpl implements SeckillService {
                     // 重复秒杀
                     throw new RepeatKillException("seckill repeated");
                 } else {
-                    // 秒杀成功
+                    // 秒杀成功 commit
                     SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
                     return new SeckillExecution(seckillId, SeckillStatEnum.SUCCESS, successKilled);
                 }
@@ -127,5 +127,9 @@ public class SeckillServiceImpl implements SeckillService {
             logger.error(e.getMessage(), e);
             throw new SeckillException("seckill inner error : " + e.getMessage());
         }
+    }
+
+    public SeckillExecution executeSeckillProcedure(long seckillId, long userPhone, String md5) throws SeckillException, RepeatKillException, SeckillCloseException {
+        return null;//todo
     }
 }
